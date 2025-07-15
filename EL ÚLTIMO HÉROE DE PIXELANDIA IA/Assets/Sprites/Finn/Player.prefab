@@ -89,7 +89,6 @@ GameObject:
   - component: {fileID: 4176086988695333556}
   - component: {fileID: 5282279318889504383}
   - component: {fileID: 6675721972995766697}
-  - component: {fileID: 7616291569051780475}
   - component: {fileID: 4328929737458513779}
   - component: {fileID: 7430764413331962072}
   m_Layer: 0
@@ -197,52 +196,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!61 &7616291569051780475
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4976646889009913389}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_CompositeOperation: 0
-  m_CompositeOrder: 0
-  m_Offset: {x: -0.030666351, y: 0.15555549}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.4354919, y: 0.390337}
-    oldSize: {x: 2, y: 2}
-    newSize: {x: 2, y: 2}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  m_Size: {x: 0.8172264, y: 1.1239448}
-  m_EdgeRadius: 0
 --- !u!114 &4328929737458513779
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -258,12 +211,15 @@ MonoBehaviour:
   velocidad: 4
   fuerzasalto: 6
   fuerzaRebote: 5
+  saltoMaximo: 0
+  saltoRestante: 0
   vida: 3
   longitudRaycast: 0.59
   capaSuelo:
     serializedVersion: 2
     m_Bits: 8
   animator: {fileID: 7430764413331962072}
+  recibiendoDanio: 0
   muerto: 0
 --- !u!95 &7430764413331962072
 Animator:
