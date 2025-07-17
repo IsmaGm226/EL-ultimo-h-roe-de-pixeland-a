@@ -14,28 +14,27 @@ public class controlesdeenemigo : MonoBehaviour
 
     private Rigidbody2D rb;
     private Vector2 direccionMovimiento;
-    private Vector2 direccionDano;
-    private bool muertoe;
+
+    private bool muerto; 
     private bool recibiendoDanio;
     private bool jugadorvivo;
 
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         jugadorvivo = true;
         rb = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
     }
 
-    // Update is called once per frame
     void Update()
     {
-        if(jugadorvivo && !muertoe)
+        if (jugadorvivo && !muerto)
         {
             Movimiento();
         }
 
-        animator.SetBool("muertoe", muertoe);
+        animator.SetBool("muerto", muerto);
     }
 
     private void Movimiento()
@@ -52,57 +51,71 @@ public class controlesdeenemigo : MonoBehaviour
         {
             direccionMovimiento = Vector2.zero;
         }
-        if (!recibiendoDanio)
+
+        if (!recibiendoDanio && !muerto) // Asegúrate de no moverlo si está recibiendo daño o muerto
         {
             rb.MovePosition(rb.position + direccionMovimiento * velocidadMovimiento * Time.deltaTime);
         }
     }
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            // Lógica de daño al jugador
+        
             Vector2 direccionDanio = new Vector2(transform.position.x, 0);
             MovimientoJugador jugador = collision.gameObject.GetComponent<MovimientoJugador>();
-            
-            jugador.RecibeDanio(direccionDanio, 1);
-            jugadorvivo = !jugador.muerto;
 
+            if (jugador != null) // Asegúrate de que el componente exista
+            {
+                jugador.RecibeDanio(direccionDanio, 1);
+                jugadorvivo = !jugador.muerto;
+            }
         }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Espada")) 
+        if (collision.CompareTag("Espada"))
         {
-            Vector2 direccionDanio = new Vector2(collision.gameObject.transform.position.x, 0);
+            // La dirección de daño de la espada debe ser desde la espada hacia el enemigo.
+            // Vector2 direccionDanio = (transform.position - collision.transform.position).normalized; // Mejor cálculo
+            Vector2 direccionDanio = new Vector2(collision.gameObject.transform.position.x, 0); // Tu lógica original
             RecibeDanio(direccionDanio, 1);
         }
     }
+
     public void RecibeDanio(Vector2 direccion, int cantDanio)
     {
-        if (!recibiendoDanio)
+        if (!recibiendoDanio && !muerto) // Solo recibe daño si no está ya recibiéndolo o muerto
         {
             vida -= cantDanio;
             recibiendoDanio = true;
+
             if (vida <= 0)
             {
-                muertoe = true;
+                muerto = true; 
             }
             else
             {
                 Vector2 rebote = new Vector2(transform.position.x - direccion.x, 0.2f).normalized;
                 rb.AddForce(rebote * fuerzaRebote, ForceMode2D.Impulse);
-                StartCoroutine(DesactivaDanio());
+                
             }
-           
         }
     }
-    IEnumerator DesactivaDanio()
+
+    public void DesactivaDanio()
     {
-        yield return new WaitForSeconds(0.4f);
         recibiendoDanio = false;
         rb.linearVelocity = Vector2.zero;
     }
 
+    public void DestruirSlime()
+    {
+        if (muerto)
+        {
+            Destroy(gameObject);
+        }
+    }
 }

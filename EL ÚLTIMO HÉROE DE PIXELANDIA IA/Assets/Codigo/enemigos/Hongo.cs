@@ -6,7 +6,7 @@ public class Hongo : MonoBehaviour
     public Transform player;
     public float detectarRango = 5f;
     public float velocidadMovimiento = 2f;
-    public float fuerzaRebote = 6f;
+    public float fuerzaRebote = 3f;
     public int vida = 3;
 
     [Header("Animación")]
@@ -14,30 +14,27 @@ public class Hongo : MonoBehaviour
 
     private Rigidbody2D rb;
     private Vector2 direccionMovimiento;
-    private Vector2 direccionDano;
+    private bool enMovimiento;
+
     private bool muerto;
     private bool recibiendoDanio;
     private bool jugadorvivo;
-    private bool EnMovimiento;
-    
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         jugadorvivo = true;
         rb = GetComponent<Rigidbody2D>();
-        animator = GetComponent<Animator>();
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (jugadorvivo && !muerto)
         {
             Movimiento();
         }
+        animator.SetBool("Enmovimiento", enMovimiento);
         animator.SetBool("muerto", muerto);
-        animator.SetBool("RecibeDanio", recibiendoDanio);
+        animator.SetBool("recibeDanio", recibiendoDanio);
     }
 
     private void Movimiento()
@@ -47,65 +44,68 @@ public class Hongo : MonoBehaviour
         if (distanciaAlJugador < detectarRango)
         {
             Vector2 direccion = (player.position - transform.position).normalized;
+            direccionMovimiento = new Vector2(direccion.x, 0);
+
+            enMovimiento = true;
 
             if (direccion.x < 0)
             {
                 transform.localScale = new Vector3(1, 1, 1);
             }
-            else if (direccion.x > 0)
+            else
             {
                 transform.localScale = new Vector3(-1, 1, 1);
             }
-
-            // El movimiento del hongo es solo horizontal.
-            direccionMovimiento = new Vector2(direccion.x, 0);
-
-            EnMovimiento = true;
         }
         else
         {
             direccionMovimiento = Vector2.zero;
-            EnMovimiento = false;
+            enMovimiento = false;
         }
 
-        if (!recibiendoDanio)
+        if (!recibiendoDanio && !muerto)
         {
             rb.MovePosition(rb.position + direccionMovimiento * velocidadMovimiento * Time.deltaTime);
-        } 
-        animator.SetBool("Enmovimiento", EnMovimiento);
+            
+            animator.SetBool("Enmovimiento", enMovimiento);
+        }
     }
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            // Lógica de daño al jugador.
             Vector2 direccionDanio = new Vector2(transform.position.x, 0);
             MovimientoJugador jugador = collision.gameObject.GetComponent<MovimientoJugador>();
 
-            jugador.RecibeDanio(direccionDanio, 1);
-            jugadorvivo = !jugador.muerto;
+            if (jugador != null) // Asegúrate de que el componente exista
+            {
+                jugador.RecibeDanio(direccionDanio, 1);
+                jugadorvivo = !jugador.muerto;
+            }
         }
     }
-
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Espada"))
         {
-            Vector2 direccionDanio = new Vector2(collision.gameObject.transform.position.x, 0);
+           
+            Vector2 direccionDanio = new Vector2(collision.gameObject.transform.position.x, 0); 
             RecibeDanio(direccionDanio, 1);
         }
     }
 
     public void RecibeDanio(Vector2 direccion, int cantDanio)
     {
-        if (!recibiendoDanio)
+        if (!recibiendoDanio && !muerto) // Solo recibe daño si no está ya recibiéndolo o muerto
         {
             vida -= cantDanio;
             recibiendoDanio = true;
-            animator.SetBool("RecibeDanio", true);
+
             if (vida <= 0)
             {
                 muerto = true;
+                enMovimiento = false;
             }
             else
             {
@@ -118,12 +118,14 @@ public class Hongo : MonoBehaviour
     public void DesactivaDanio()
     {
         recibiendoDanio = false;
-        animator.SetBool("RecibeDanio", false);
         rb.linearVelocity = Vector2.zero;
     }
 
-    public void EliminarCuerpo()
+    public void DestruirHongo()
     {
-        Destroy(gameObject);
+        if (muerto)
+        {
+            Destroy(gameObject);
+        }
     }
 }
