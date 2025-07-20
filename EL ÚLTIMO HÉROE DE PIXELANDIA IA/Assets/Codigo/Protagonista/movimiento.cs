@@ -136,4 +136,11 @@ public class MovimientoJugador : MonoBehaviour
     {
         atacando = false;
     }
+    public void DestruirProta()
+    {
+        if (muerto)
+        {
+            Destroy(gameObject);
+        }
+    }
 }
