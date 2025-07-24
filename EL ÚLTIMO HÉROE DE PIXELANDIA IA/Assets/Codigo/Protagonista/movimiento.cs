@@ -6,9 +6,16 @@ using UnityEngine.Rendering;
 
 public class MovimientoJugador : MonoBehaviour
 {
+    public SonidosPersonajes sonidosPersonajes;
     // --- Parámetros públicos ---
     [Header("Movimiento")]
     public float velocidad;
+
+    public bool steep1 = false;
+    public bool fall = false;
+    public float timeByStep = 0.5f;
+    public float cont = 0;
+
     public float fuerzasalto;
     public float fuerzaRebote;
 
@@ -48,16 +55,24 @@ public class MovimientoJugador : MonoBehaviour
                 // Comprobar si está en el suelo
                 RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, longitudRaycast, capaSuelo);
                 enSuelo = hit.collider != null;
+                if (enSuelo && rb.linearVelocity.y < 0 && fall)
+                {
+                    
+                    sonidosPersonajes.playCaida();
+                    fall= false;
+                }
 
                 if (enSuelo && (Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.W)) && !recibiendoDanio)
                 {
+
+                    sonidosPersonajes.playSaltar();
                     rb.linearVelocity = new Vector2(rb.linearVelocity.x, 0f);
                     rb.AddForce(new Vector2(0f, fuerzasalto), ForceMode2D.Impulse);
                 }
             }
 
 
-            if (Input.GetKeyDown(KeyCode.Z) && !atacando && enSuelo)
+            if (Input.GetKeyDown(KeyCode.Z) && !atacando)
             {
                 Atacando();
             }
@@ -69,9 +84,27 @@ public class MovimientoJugador : MonoBehaviour
     public void Movimiento()
     {
 
-
         // Movimiento horizontal
         float velocidadX = Input.GetAxis("Horizontal") * velocidad * Time.deltaTime;
+     
+        if (velocidadX != 0 && enSuelo && !recibiendoDanio && !atacando)
+        {
+            cont += Time.deltaTime;
+            if (cont >= timeByStep)
+            {
+                cont = 0;
+                if (steep1)
+                {
+                    sonidosPersonajes.playMov1();
+                }
+                else
+                {
+                    sonidosPersonajes.playMov2();
+                }
+                steep1 = !steep1;
+            }
+        }
+
         animator.SetFloat("movement", velocidadX * velocidad);
 
         // Girar sprite según dirección
@@ -106,10 +139,12 @@ public class MovimientoJugador : MonoBehaviour
     {
         if (!recibiendoDanio)
         {
+            sonidosPersonajes.playRecibirDaño();
             recibiendoDanio = true;
             vida -= cantDanio;
             if (vida <= 0)
             {
+                sonidosPersonajes.playMuerte();
                 muerto = true;
             }
             if (!muerto)
@@ -130,6 +165,7 @@ public class MovimientoJugador : MonoBehaviour
 
     public void Atacando()
     {
+        sonidosPersonajes.playAtacar();
         atacando = true;
     }
     public void DesactivaAtaque()
