@@ -1,0 +1,377 @@
+fileFormatVersion: 2
+guid: 73b701442f49f024d962e585fc6e20f1
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -6422978514570762021
+    second: Titulo_espadaDor (1)_0
+  - first:
+      213: -456925051502698678
+    second: Titulo_espadaDor (1)_1
+  - first:
+      213: 957229293127836108
+    second: Titulo_espadaDor (1)_2
+  - first:
+      213: -4073909570921336473
+    second: Titulo_espadaDor (1)_3
+  - first:
+      213: 7213691019363173214
+    second: Titulo_espadaDor (1)_4
+  - first:
+      213: 3142156504252393365
+    second: Titulo_espadaDor (1)_5
+  - first:
+      213: -8067480696672715321
+    second: Titulo_espadaDor (1)_6
+  - first:
+      213: 1321103980358268010
+    second: Titulo_espadaDor (1)_7
+  - first:
+      213: -9024890653618762740
+    second: Titulo_espadaDor (1)_8
+  - first:
+      213: -3756870571326240045
+    second: Titulo_espadaDor (1)_9
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Titulo_espadaDor (1)_0
+      rect:
+        serializedVersion: 2
+        x: 97
+        y: 551
+        width: 213
+        height: 137
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bd82b07421ffcd6a0800000000000000
+      internalID: -6422978514570762021
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Titulo_espadaDor (1)_1
+      rect:
+        serializedVersion: 2
+        x: 335
+        y: 550
+        width: 519
+        height: 175
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a4f5438261da8a9f0800000000000000
+      internalID: -456925051502698678
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Titulo_espadaDor (1)_2
+      rect:
+        serializedVersion: 2
+        x: 842
+        y: 550
+        width: 138
+        height: 138
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cc1ab7178f2c84d00800000000000000
+      internalID: 957229293127836108
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Titulo_espadaDor (1)_3
+      rect:
+        serializedVersion: 2
+        x: 98
+        y: 374
+        width: 864
+        height: 175
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7617b2a64d09677c0800000000000000
+      internalID: -4073909570921336473
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Titulo_espadaDor (1)_4
+      rect:
+        serializedVersion: 2
+        x: 202
+        y: 322
+        width: 275
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e53419823cd2c1460800000000000000
+      internalID: 7213691019363173214
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Titulo_espadaDor (1)_5
+      rect:
+        serializedVersion: 2
+        x: 481
+        y: 303
+        width: 67
+        height: 66
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 597a5a851be2b9b20800000000000000
+      internalID: 3142156504252393365
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Titulo_espadaDor (1)_6
+      rect:
+        serializedVersion: 2
+        x: 541
+        y: 302
+        width: 59
+        height: 68
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7cd708abc0d8a0090800000000000000
+      internalID: -8067480696672715321
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Titulo_espadaDor (1)_7
+      rect:
+        serializedVersion: 2
+        x: 603
+        y: 321
+        width: 275
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a64fb941211855210800000000000000
+      internalID: 1321103980358268010
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Titulo_espadaDor (1)_8
+      rect:
+        serializedVersion: 2
+        x: 34
+        y: 158
+        width: 839
+        height: 137
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c0c8f4634c521c280800000000000000
+      internalID: -9024890653618762740
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Titulo_espadaDor (1)_9
+      rect:
+        serializedVersion: 2
+        x: 862
+        y: 159
+        width: 189
+        height: 136
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3da0bf0ce1aecdbc0800000000000000
+      internalID: -3756870571326240045
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Titulo_espadaDor (1)_0: -6422978514570762021
+      Titulo_espadaDor (1)_1: -456925051502698678
+      Titulo_espadaDor (1)_2: 957229293127836108
+      Titulo_espadaDor (1)_3: -4073909570921336473
+      Titulo_espadaDor (1)_4: 7213691019363173214
+      Titulo_espadaDor (1)_5: 3142156504252393365
+      Titulo_espadaDor (1)_6: -8067480696672715321
+      Titulo_espadaDor (1)_7: 1321103980358268010
+      Titulo_espadaDor (1)_8: -9024890653618762740
+      Titulo_espadaDor (1)_9: -3756870571326240045
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
