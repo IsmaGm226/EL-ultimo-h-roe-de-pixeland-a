@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class Rino : MonoBehaviour
 {
+    public Sonidosdeenemigos sonidosEnemigos;
     public Transform player;
     public float detectarRango = 5f;
     public float velocidadMovimiento = 2f;
@@ -18,6 +19,8 @@ public class Rino : MonoBehaviour
     private bool muerto;
     private bool recibiendoDanio;
     private bool jugadorvivo;
+    public int valor = 1;
+    public GameManager gameManager;
 
     void Start()
     {
@@ -96,15 +99,28 @@ public class Rino : MonoBehaviour
 
     public void RecibeDanio(Vector2 direccion, int cantDanio)
     {
-        if (!recibiendoDanio && !muerto) // Solo recibe daño si no está ya recibiéndolo o muerto
+        if (!recibiendoDanio && !muerto)
         {
             vida -= cantDanio;
+
+            // Sonido de recibir daño
+            if (sonidosEnemigos != null)
+            {
+                sonidosEnemigos.playRecibirDaño();
+            }
+
             recibiendoDanio = true;
 
             if (vida <= 0)
             {
                 muerto = true;
                 enMovimiento = false;
+
+                // Sonido de muerte
+                if (sonidosEnemigos != null)
+                {
+                    sonidosEnemigos.playMuerte();
+                }
             }
             else
             {
@@ -118,6 +134,15 @@ public class Rino : MonoBehaviour
     {
         recibiendoDanio = false;
         rb.linearVelocity = Vector2.zero;
+    }
+
+    public void MorirAnimacion()
+    {
+        if (gameManager != null)
+        {
+            gameManager.SumarPuntos(valor);
+        }
+        ;
     }
 
     public void DestruirRino()

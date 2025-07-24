@@ -8,6 +8,13 @@ public class bala : MonoBehaviour
     public float distanciaMaxima = 15f; // Distancia máxima que puede recorrer la bala
 
     private Vector3 posicionInicial;
+    private Vector2 direccion = Vector2.left; // Por defecto a la izquierda
+
+    // Método para establecer la dirección desde el enemigo
+    public void SetDireccion(Vector2 dir)
+    {
+        direccion = dir.normalized;
+    }
 
     private void Start()
     {
@@ -16,7 +23,7 @@ public class bala : MonoBehaviour
 
     private void Update()
     {
-        transform.Translate(-Vector2.right * velocidad * Time.deltaTime);
+        transform.Translate(direccion * velocidad * Time.deltaTime);
 
         // Destruye la bala si supera la distancia máxima
         if (Vector3.Distance(posicionInicial, transform.position) >= distanciaMaxima)

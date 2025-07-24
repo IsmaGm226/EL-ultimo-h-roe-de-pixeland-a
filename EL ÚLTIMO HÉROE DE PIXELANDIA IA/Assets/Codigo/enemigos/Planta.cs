@@ -3,6 +3,7 @@ using System.Collections;
 
 public class DisparoEnemigo : MonoBehaviour
 {
+    public Sonidosdeenemigos sonidosEnemigos;
     public Transform controladorDisparo;
     public float distanciaLinea;
     public LayerMask capaJugador;
@@ -18,7 +19,9 @@ public class DisparoEnemigo : MonoBehaviour
     public int vida = 1;
     private bool muerto;
     private bool recibiendoDanio;
-   
+    public int valor = 1;
+    public GameManager gameManager;
+
     void Update()
     {    
         jugadorEnRango = Physics2D.Raycast(controladorDisparo.position, -transform.right, distanciaLinea, capaJugador);
@@ -67,26 +70,45 @@ public class DisparoEnemigo : MonoBehaviour
     }
     public void RecibeDanio(Vector2 direccion, int cantDanio)
     {
-        if (!recibiendoDanio && !muerto) // Solo recibe daño si no está ya recibiéndolo o muerto
+        if (!recibiendoDanio && !muerto)
         {
             vida -= cantDanio;
+
+            // Sonido de recibir daño
+            if (sonidosEnemigos != null)
+            {
+                sonidosEnemigos.playRecibirDaño();
+            }
+
             recibiendoDanio = true;
 
             if (vida <= 0)
             {
                 muerto = true;
+
+                // Sonido de muerte
+                if (sonidosEnemigos != null)
+                {
+                    sonidosEnemigos.playMuerte();
+                }
             }
-            else
-            {
-                StartCoroutine(ReiniciarRecibiendoDanio());
-            }
+            
         }
     }
+
 
     private IEnumerator ReiniciarRecibiendoDanio()
     {
         yield return new WaitForSeconds(0.3f);
         recibiendoDanio = false;
+    }
+    public void MorirAnimacion()
+    {
+        if (gameManager != null)
+        {
+            gameManager.SumarPuntos(valor);
+        }
+        ;
     }
     public void DestruirPlanta()
     {

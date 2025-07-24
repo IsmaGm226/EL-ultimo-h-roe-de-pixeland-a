@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class controlesdeenemigo : MonoBehaviour
 {
+    public Sonidosdeenemigos sonidosEnemigos;
     public Transform player;
     public float detectarRango = 5f;
     public float velocidadMovimiento = 2f;
@@ -18,7 +19,8 @@ public class controlesdeenemigo : MonoBehaviour
     private bool muerto; 
     private bool recibiendoDanio;
     private bool jugadorvivo;
-
+    public int valor = 1;
+    public GameManager gameManager;
 
     void Start()
     {
@@ -87,20 +89,32 @@ public class controlesdeenemigo : MonoBehaviour
 
     public void RecibeDanio(Vector2 direccion, int cantDanio)
     {
-        if (!recibiendoDanio && !muerto) // Solo recibe daño si no está ya recibiéndolo o muerto
+        if (!recibiendoDanio && !muerto)
         {
             vida -= cantDanio;
+
+            // Sonido de recibir daño
+            if (sonidosEnemigos != null)
+            {
+                sonidosEnemigos.playRecibirDaño();
+            }
+
             recibiendoDanio = true;
 
             if (vida <= 0)
             {
-                muerto = true; 
+                muerto = true;
+
+                // Sonido de muerte
+                if (sonidosEnemigos != null)
+                {
+                    sonidosEnemigos.playMuerte();
+                }
             }
             else
             {
                 Vector2 rebote = new Vector2(transform.position.x - direccion.x, 0.2f).normalized;
                 rb.AddForce(rebote * fuerzaRebote, ForceMode2D.Impulse);
-                
             }
         }
     }
@@ -111,6 +125,15 @@ public class controlesdeenemigo : MonoBehaviour
         rb.linearVelocity = Vector2.zero;
     }
 
+    public void MorirAnimacion()
+    {
+        if (gameManager != null)
+        {
+            gameManager.SumarPuntos(valor);
+        }
+        ;
+    }
+
     public void DestruirSlime()
     {
         if (muerto)
@@ -118,4 +141,5 @@ public class controlesdeenemigo : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
 }

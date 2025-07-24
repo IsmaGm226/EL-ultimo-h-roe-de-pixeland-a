@@ -22,15 +22,15 @@ AnimationClip:
     curve:
     - time: 0
       value: {fileID: 5641638529897069760, guid: 08a32952c6c3a514cb0d92b0855a5975, type: 3}
-    - time: 0.25
+    - time: 0.05
       value: {fileID: 203894707262023572, guid: 08a32952c6c3a514cb0d92b0855a5975, type: 3}
-    - time: 0.48333332
+    - time: 0.1
       value: {fileID: -2011412612036983366, guid: 08a32952c6c3a514cb0d92b0855a5975, type: 3}
-    - time: 0.73333335
+    - time: 0.15
       value: {fileID: 2053719668135419293, guid: 08a32952c6c3a514cb0d92b0855a5975, type: 3}
-    - time: 0.96666664
+    - time: 0.2
       value: {fileID: -6415160527855421042, guid: 08a32952c6c3a514cb0d92b0855a5975, type: 3}
-    - time: 1.2166667
+    - time: 0.25
       value: {fileID: -8265649554163657122, guid: 08a32952c6c3a514cb0d92b0855a5975, type: 3}
     attribute: m_Sprite
     path: 
@@ -65,7 +65,7 @@ AnimationClip:
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 1.2333333
+    m_StopTime: 0.26666668
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
@@ -85,7 +85,14 @@ AnimationClip:
   m_HasGenericRootTransform: 0
   m_HasMotionFloatCurves: 0
   m_Events:
-  - time: 0.95
+  - time: 0.083333336
+    functionName: MorirAnimacion
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 0.15
     functionName: DestruirTortuga
     data: 
     objectReferenceParameter: {fileID: 0}
