@@ -4,64 +4,62 @@ using UnityEngine;
 
 public class Parallaxmovimiento : MonoBehaviour
 {
-    Transform cam; //Main Camera
-    Vector3 camStartPos;
-    float distance; //jarak antara start camera posisi dan current posisi
+    Transform camara;
+    Vector3 posicionCamaraAnterior;
+    float distancia; 
+    GameObject[] fondos;
+    Material[] materiales;
+    float[] velocidadFondos;
 
-    GameObject[] backgrounds;
-    Material[] mat;
-    float[] backSpeed;
-
-    float farthestBack;
+    float fondoMasLejano;
 
     [Range(0.01f, 1f)]
-    public float parallaxSpeed;
+    public float velocidadParallax;
 
-    // Start is called before the first frame update
     void Start()
     {
-        cam = Camera.main.transform;
-        camStartPos = cam.position;
+        camara = Camera.main.transform;
+        posicionCamaraAnterior = camara.position;
 
-        int backCount = transform.childCount;
-        mat = new Material[backCount];
-        backSpeed = new float[backCount];
-        backgrounds = new GameObject[backCount];
+        int cantidadFondos = transform.childCount;
+        materiales = new Material[cantidadFondos];
+        velocidadFondos = new float[cantidadFondos];
+        fondos = new GameObject[cantidadFondos];
 
-        for (int i = 0; i < backCount; i++)
+        for (int i = 0; i < cantidadFondos; i++)
         {
-            backgrounds[i] = transform.GetChild(i).gameObject;
-            mat[i] = backgrounds[i].GetComponent<Renderer>().material;
+            fondos[i] = transform.GetChild(i).gameObject;
+            materiales[i] = fondos[i].GetComponent<Renderer>().material;
         }
 
-        BackSpeedCalculate(backCount);
+        CalcularVelocidadFondos(cantidadFondos);
     }
 
-    void BackSpeedCalculate(int backCount)
+    void CalcularVelocidadFondos(int cantidadFondos)
     {
-        for (int i = 0; i < backCount; i++) //find the farthest background
+        for (int i = 0; i < cantidadFondos; i++) 
         {
-            if ((backgrounds[i].transform.position.z - cam.position.z) > farthestBack)
+            if ((fondos[i].transform.position.z - camara.position.z) > fondoMasLejano)
             {
-                farthestBack = backgrounds[i].transform.position.z - cam.position.z;
+                fondoMasLejano = fondos[i].transform.position.z - camara.position.z;
             }
         }
 
-        for (int i = 0; i < backCount; i++) //set the speed of bacground
+        for (int i = 0; i < cantidadFondos; i++) 
         {
-            backSpeed[i] = 1 - (backgrounds[i].transform.position.z - cam.position.z) / farthestBack;
+            velocidadFondos[i] = 1 - (fondos[i].transform.position.z - camara.position.z) / fondoMasLejano;
         }
     }
 
     private void LateUpdate()
     {
-        distance = cam.position.x - camStartPos.x;
-        transform.position = new Vector3(cam.position.x - 1, transform.position.y, 9.92f);
+        distancia = camara.position.x - posicionCamaraAnterior.x;
+        transform.position = new Vector3(camara.position.x - 1, transform.position.y, 9.92f);
 
-        for (int i = 0; i < backgrounds.Length; i++)
+        for (int i = 0; i < fondos.Length; i++)
         {
-            float speed = backSpeed[i] * parallaxSpeed;
-            mat[i].SetTextureOffset("_MainTex", new Vector2(distance, 0) * speed);
+            float velocidad = velocidadFondos[i] * velocidadParallax;
+            materiales[i].SetTextureOffset("_MainTex", new Vector2(distancia, 0) * velocidad);
         }
     }
 }

@@ -7,7 +7,7 @@ public class Trampas : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
-            {
+        {
             MovimientoJugador jugador = collision.gameObject.GetComponent<MovimientoJugador>();
             if (jugador != null)
             {

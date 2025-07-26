@@ -25,7 +25,7 @@ public class TrampaPuas : MonoBehaviour
         posicionInicial = transform.position;
         posicionObjetivoBajaCalculada = new Vector2(posicionInicial.x, posicionInicial.y - distanciaBajada);
 
-        // Asegura que el Rigidbody2D existe y lo configura como Kinematic.
+        // 
         if (rb2D == null) rb2D = GetComponent<Rigidbody2D>();
         if (rb2D == null) { Debug.LogError("Rigidbody2D no encontrado.", this); enabled = false; return; }
         rb2D.bodyType = RigidbodyType2D.Kinematic;
@@ -60,12 +60,11 @@ public class TrampaPuas : MonoBehaviour
 
             while (Vector2.Distance(rb2D.position, objetivoActualBajada) > 0.05f)
             {
-                // Usa un raycast para detectar el suelo y detener la trampa con precisión.
                 RaycastHit2D hit = Physics2D.Raycast(rb2D.position, Vector2.down, distanciaRaycastSuelo, capaSuelo);
 
                 if (hit.collider != null) // Si el raycast detecta el suelo.
                 {
-                    // Posiciona la trampa justo sobre la superficie del suelo.
+                    
                     rb2D.position = hit.point + Vector2.up * GetComponent<Collider2D>().bounds.extents.y;
                     break; // Sale del bucle de bajada.
                 }

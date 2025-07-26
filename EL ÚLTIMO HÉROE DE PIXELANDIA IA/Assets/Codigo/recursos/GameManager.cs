@@ -21,6 +21,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    //Suma puntos al total y actualiza el HUD
     public void SumarPuntos(int puntosAsumar)
     {
         PuntosTotales += puntosAsumar;
